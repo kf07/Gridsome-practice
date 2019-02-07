@@ -17,6 +17,7 @@
 npm i -D node-sass sass-loader
 ```
 して普通のVueファイルと同じように 
+styleにlang指定するだけ
 ```
-<style lang="scss">するだけ
+<style lang="scss">
 ```
