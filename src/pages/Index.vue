@@ -1,37 +1,38 @@
 <template>
-  <Layout>
-    
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135" />
-    
-    <h1 class="mainTitle">Hello, <span>Gridsome!</span></h1>
-   
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
-
-    <p class="home-links">
-      <a href="https://gridsome.org/docs" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
-
-  </Layout>
+    <Layout>
+        <h1>Blog Posts</h1>
+        <div v-for="item in $page.allBlogPost.edges" :key="item.path" class="post">
+            <h2>
+                <g-link :to="item.node.path">{{ item.node.title }}</g-link>
+            </h2>
+            <dl>
+                <dt>{{ item.node.date }}</dt><dd>{{ item.node.fields.tags}}</dd>
+            </dl>
+            <p>{{ item.node.fields.description }}</p>
+            <g-link :to="item.node.path" class="continue-link">続きを読む ></g-link>
+        </div>
+    </Layout>
 </template>
 
-<script>
-export default {
- // ..
-}
-</script>
-
-<style lang="scss" scoped>
-  .home-links a {
-    margin-right: 1rem;
-  }
-  .mainTitle {
-    span {
-      font-size: 40px;
-      display: block;
+<page-query>
+    query Home ($page: Int) {
+    allBlogPost (page: $page) {
+    edges {
+    node {
+    _id
+    title
+    date (format: "YYYY年MM月DD日 HH:mm:ss")
+    fields {
+    description
+    tags
     }
-  }
-</style>
+    path
+    }
+    }
+    }
+    }
+</page-query>
+
+<script>
+  export default {}
+</script>

@@ -21,3 +21,8 @@ styleにlang指定するだけ
 ```
 <style lang="scss">
 ```
+
+markdownで書くため
+```
+npm install @gridsome/source-filesystem @gridsome/transformer-remark
+```
