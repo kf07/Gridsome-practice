@@ -1,6 +1,9 @@
 <template>
     <Layout>
-        <h1>Blog Posts</h1>
+        <h1 class="mainTitle">Blog Posts</h1>
+        <div class="test">
+            <a href=""></a>
+        </div>
         <div v-for="item in $page.allBlogPost.edges" :key="item.path" class="post">
             <h2>
                 <g-link :to="item.node.path">{{ item.node.title }}</g-link>
@@ -36,3 +39,18 @@
 <script>
   export default {}
 </script>
+
+<style scoped lang="scss">
+    .mainTitle {
+        font-size: 15px;
+    }
+    .test {
+        display: grid;
+        grid-template-columns: repeat(3,50px);
+        grid-template-rows: repeat(5,30px);
+        display: flex;
+        a {
+            display: block;
+        }
+    }
+</style>
